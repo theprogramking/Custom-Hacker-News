@@ -1,0 +1,667 @@
+/* ── Shared non-color tokens ─────────────────────────────── */
+:root {
+  --font-sans:  'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono:  'Geist Mono', 'SF Mono', 'Fira Code', ui-monospace, monospace;
+  --radius-sm:  4px;
+  --radius:     6px;
+  --radius-lg:  8px;
+  --transition: 140ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+html[data-hn-theme] *, html[data-hn-theme] *::before, html[data-hn-theme] *::after {
+  box-sizing: border-box;
+}
+
+html[data-hn-theme] body {
+  background-color: var(--bg-base) !important;
+  color: var(--text-secondary) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html[data-hn-theme] td {
+  font-family: var(--font-sans) !important;
+  font-size: 13px !important;
+  color: var(--text-secondary) !important;
+}
+
+/* ── Main Container ──────────────────────────────────────── */
+html[data-hn-theme] #hnmain {
+  background: transparent !important;
+  min-width: 796px;
+  max-width: 1100px;
+  margin: 0 auto !important;
+}
+
+html[data-hn-theme] body > center > table,
+html[data-hn-theme] body > table,
+html[data-hn-theme] center > table#hnmain {
+  background: transparent !important;
+}
+
+/* ── Navigation ──────────────────────────────────────────── */
+html[data-hn-theme] table#hnmain {
+  border-collapse: collapse !important;
+}
+
+html[data-hn-theme] table[bgcolor="#ff6600"],
+html[data-hn-theme] td[bgcolor="#ff6600"],
+html[data-hn-theme] .pagetop {
+  background: transparent !important;
+}
+
+html[data-hn-theme] table#hnmain > tbody > tr:first-child > td {
+  background: var(--nav-bg) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+  border-bottom: 1px solid var(--border) !important;
+  padding: 10px 16px !important;
+}
+
+html[data-hn-theme] table#hnmain > tbody > tr:first-child > td > table {
+  width: 100% !important;
+  background: transparent !important;
+}
+
+html[data-hn-theme] .pagetop {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0 !important;
+  font-weight: 500 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.4 !important;
+}
+
+html[data-hn-theme] .pagetop img[src="y18.svg"],
+html[data-hn-theme] img[src="y18.svg"] {
+  border-radius: 3px !important;
+  border: none !important;
+}
+
+html[data-hn-theme] .hnname {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  margin-right: 10px !important;
+}
+
+html[data-hn-theme] .hnname a,
+html[data-hn-theme] .hnname a:visited {
+  color: var(--accent) !important;
+  text-decoration: none !important;
+}
+
+html[data-hn-theme] .pagetop a,
+html[data-hn-theme] .pagetop a:visited {
+  color: var(--text-secondary) !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  padding: 5px 10px !important;
+  border-radius: var(--radius-sm) !important;
+  transition: all 0.18s ease !important;
+}
+
+html[data-hn-theme] .pagetop a:hover {
+  color: var(--accent) !important;
+  background: var(--bg-surface-3) !important;
+}
+
+html[data-hn-theme] .pagetop a,
+html[data-hn-theme] .pagetop b.hnname {
+  font-size: 13px !important;
+}
+
+html[data-hn-theme] .topsel a,
+html[data-hn-theme] .topsel a:visited {
+  color: var(--accent) !important;
+  background: var(--accent-dim) !important;
+}
+
+html[data-hn-theme] .pagetop b {
+  color: var(--border) !important;
+  font-weight: 400 !important;
+  user-select: none !important;
+}
+
+html[data-hn-theme] .pagetop > span:last-child a { color: var(--text-secondary) !important; }
+html[data-hn-theme] .pagetop > span:last-child a:hover { color: var(--text-primary) !important; }
+
+/* ── Spacer rows ─────────────────────────────────────────── */
+html[data-hn-theme] #hnmain > tbody > tr:nth-child(2) > td {
+  height: 8px !important;
+  background: transparent !important;
+}
+html[data-hn-theme] #hnmain > tbody > tr:nth-child(2) { height: 0 !important; }
+
+/* ── Story List ──────────────────────────────────────────── */
+html[data-hn-theme] .itemlist {
+  background: transparent !important;
+  padding: 0 8px !important;
+}
+
+html[data-hn-theme] tr.athing {
+  background: transparent !important;
+  transition: background var(--transition) !important;
+  border-radius: var(--radius) !important;
+  border-top: 1px solid transparent !important;
+}
+
+html[data-hn-theme] tr.athing + tr.athing {
+  border-top: 1px solid var(--border-subtle) !important;
+}
+
+
+/* ── Vote Arrows ─────────────────────────────────────────── */
+
+html[data-hn-theme] td.rank {
+  width: 0 !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  color: transparent !important;
+}
+
+html[data-hn-theme] .votelinks {
+  width: 18px !important;
+  min-width: 18px !important;
+  padding: 0 !important;
+  text-align: center !important;
+  vertical-align: top !important;
+}
+
+html[data-hn-theme] .votelinks a {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.votearrow {
+  display: block !important;
+  margin: 0 auto !important;
+	margin-top: 15px !important;
+  filter: invert(55%) sepia(8%) saturate(300%) hue-rotate(175deg) brightness(90%) !important;
+  transition: filter var(--transition), transform var(--transition) !important;
+  cursor: pointer !important;
+}
+
+/* hover */
+.votearrow:hover {
+  filter: invert(62%) sepia(90%) saturate(600%) hue-rotate(340deg) brightness(115%) !important;
+  transform: scale(1.25) !important;
+}
+
+html[data-hn-theme="dark"] .votearrow {
+  filter: invert(55%) sepia(8%) saturate(300%) hue-rotate(175deg)
+          brightness(90%) !important;
+}
+
+html[data-hn-theme="light"] .votearrow {
+  filter: invert(35%) sepia(8%) saturate(300%) hue-rotate(175deg)
+          brightness(80%) !important;
+}
+
+html[data-hn-theme] .votearrow:hover,
+html[data-hn-theme] .votelinks a:hover .votearrow {
+  filter: invert(62%) sepia(90%) saturate(600%) hue-rotate(340deg)
+          brightness(115%) !important;
+  transform: scale(1.25) !important;
+}
+
+/* restore original HN spacing */
+html[data-hn-theme] tr.athing > td:nth-child(2) {
+  width: 18px !important;
+}
+
+html[data-hn-theme] tr.athing > td:nth-child(3) {
+  padding-left: 6px !important;
+}
+
+/* ── Story Titles ────────────────────────────────────────── */
+html[data-hn-theme] td.title { padding: 7px 4px 2px 4px !important; }
+
+html[data-hn-theme] .title,
+html[data-hn-theme] td.title {
+  font-family: var(--font-sans) !important;
+  font-size: 13.5px !important;
+  color: var(--text-secondary) !important;
+  overflow: hidden !important;
+}
+
+html[data-hn-theme] td.title span.rank {
+  color: var(--text-tertiary) !important;
+  font-size: 11.5px !important;
+  font-family: var(--font-mono) !important;
+  min-width: 28px !important;
+  text-align: right !important;
+  padding-right: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin-top: 15px !important;
+}
+
+html[data-hn-theme] .title a,
+html[data-hn-theme] .titleline a,
+html[data-hn-theme] .title a:link,
+html[data-hn-theme] .titleline > a:first-child {
+  color: var(--text-primary) !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+  text-decoration: none !important;
+  letter-spacing: -0.01em !important;
+  transition: color var(--transition) !important;
+  word-break: break-word !important;
+}
+
+html[data-hn-theme] .title a:visited,
+html[data-hn-theme] .titleline > a:first-child:visited { color: var(--text-visited) !important; }
+
+html[data-hn-theme] .title a:hover,
+html[data-hn-theme] .titleline > a:first-child:hover { color: var(--accent) !important; }
+
+/* ── Domain Pills ────────────────────────────────────────── */
+html[data-hn-theme] .title .sitebit,
+html[data-hn-theme] .title span.sitebit,
+html[data-hn-theme] span.sitestr,
+html[data-hn-theme] .sitebit.comhead {
+  display: inline-flex !important;
+  align-items: center !important;
+  vertical-align: middle !important;
+}
+
+html[data-hn-theme] .sitebit a,
+html[data-hn-theme] .sitebit a:link,
+html[data-hn-theme] .sitebit a:visited,
+html[data-hn-theme] span.sitestr,
+html[data-hn-theme] .sitebit span {
+  display: inline-block !important;
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--text-tertiary) !important;
+  padding: 1px !important;
+  border-radius: 20px !important;
+  text-decoration: none !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.01em !important;
+  transition: color var(--transition) !important;
+  white-space: nowrap !important;
+}
+
+html[data-hn-theme] .sitebit a:hover,
+html[data-hn-theme] .sitebit span:hover { color: var(--accent) !important; }
+html[data-hn-theme] .comhead { margin-left: 5px !important; }
+
+/* ── Subtext ─────────────────────────────────────────────── */
+html[data-hn-theme] .subtext {
+  font-family: var(--font-sans) !important;
+  font-size: 11.5px !important;
+  color: var(--text-tertiary) !important;
+  line-height: 1.5 !important;
+}
+
+html[data-hn-theme] .subtext td {
+  font-family: var(--font-sans) !important;
+  font-size: 11.5px !important;
+  color: var(--text-tertiary) !important;
+  padding-bottom: 7px !important;
+  padding-top: 1px !important;
+  padding-left: 40px !important;
+}
+
+html[data-hn-theme] .subtext .score,
+html[data-hn-theme] span.score {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-weight: 600 !important;
+  font-size: 11.5px !important;
+  color: var(--score) !important;
+  font-family: var(--font-mono) !important;
+  padding: 1px 6px !important;
+  border-radius: var(--radius-sm) !important;
+  margin-right: 4px !important;
+  letter-spacing: 0.01em !important;
+}
+
+html[data-hn-theme] .subtext a.hnuser,
+html[data-hn-theme] .subtext a[href*="user?"],
+html[data-hn-theme] .comhead a[href*="user?"] {
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html[data-hn-theme] .subtext a.hnuser:hover,
+html[data-hn-theme] .subtext a[href*="user?"]:hover,
+html[data-hn-theme] .comhead a[href*="user?"]:hover { color: var(--text-primary) !important; }
+
+html[data-hn-theme] .subtext .age,
+html[data-hn-theme] .subtext a[href*="item?"] {
+  color: var(--text-tertiary) !important;
+  text-decoration: none !important;
+}
+
+html[data-hn-theme] .subtext a,
+html[data-hn-theme] .subtext a:link,
+html[data-hn-theme] .subtext a:visited {
+  color: var(--text-tertiary) !important;
+  text-decoration: none !important;
+}
+
+html[data-hn-theme] .subtext a:hover { color: var(--text-secondary) !important; }
+
+html[data-hn-theme] .subtext a[href*="hide"],
+html[data-hn-theme] .subtext a[href*="past"],
+html[data-hn-theme] .subtext a[href*="flag"] {
+  opacity: 0.7 !important;
+  font-size: 11px !important;
+}
+
+html[data-hn-theme] .subtext a[href*="hide"]:hover,
+html[data-hn-theme] .subtext a[href*="flag"]:hover { opacity: 1 !important; }
+
+html[data-hn-theme] .subtext a[href*="item?"]:last-child,
+html[data-hn-theme] .subtext a.clicky {
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+}
+
+html[data-hn-theme] .subtext a[href*="item?"]:last-child:hover { color: var(--accent) !important; }
+
+html[data-hn-theme] .subtext .age:hover,
+html[data-hn-theme] .subtext a[href*="item?"]:hover {
+  color: var(--text-secondary) !important;
+}
+
+html[data-hn-theme] .subtext a[href*="hide"],
+html[data-hn-theme] .subtext a[href*="past"],
+html[data-hn-theme] .subtext a[href*="web"],
+html[data-hn-theme] .subtext a[href*="discuss"],
+html[data-hn-theme] .subtext a[href*="flag"] {
+  color: var(--text-tertiary) !important;
+  opacity: 0.7 !important;
+  font-size: 11px !important;
+}
+
+html[data-hn-theme] .subtext .subline > span:not(.score):not(.age):not(.hnuser) {
+  color: var(--border) !important;
+}
+
+/* ── More link ───────────────────────────────────────────── */
+html[data-hn-theme] .morelink,
+html[data-hn-theme] .hnmore a {
+  display: inline-block !important;
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+  font-size: 12.5px !important;
+  text-decoration: underline !important;
+  padding: 6px 12px !important;
+  border-radius: var(--radius) !important;
+  transition: all var(--transition) !important;
+}
+
+
+html[data-hn-theme] .morelink:hover,
+html[data-hn-theme] .hnmore a:hover,
+html[data-hn-theme] a.morelink:hover {
+  color: var(--accent) !important;
+  text-decoration: underline !important;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+html[data-hn-theme] .yclinks {
+  font-family: var(--font-sans) !important;
+  font-size: 0 !important;
+  color: var(--text-tertiary) !important;
+  text-align: center !important;
+  padding: 20px 0 32px !important;
+  margin-top: 8px !important;
+}
+
+html[data-hn-theme] .yclinks a,
+html[data-hn-theme] .yclinks a:visited {
+  font-size: 13px !important;
+  color: var(--text-tertiary) !important;
+  text-decoration: none !important;
+  transition: color var(--transition) !important;
+}
+
+html[data-hn-theme] .yclinks a + a { margin-left: 10px !important; }
+html[data-hn-theme] .yclinks a:hover { color: var(--accent) !important; text-decoration: underline !important; }
+
+/* ── Comments ────────────────────────────────────────────── */
+html[data-hn-theme] .comhead {
+  font-family: var(--font-sans) !important;
+  font-size: 11.5px !important;
+  color: var(--text-tertiary) !important;
+  margin-bottom: 4px !important;
+}
+
+html[data-hn-theme] .comhead a { color: var(--text-secondary) !important; text-decoration: none !important; }
+html[data-hn-theme] .comhead a:visited { color: var(--text-tertiary) !important; }
+html[data-hn-theme] .comhead a:hover { color: var(--text-primary) !important; }
+
+html[data-hn-theme] .comment {
+  font-family: var(--font-sans) !important;
+  font-size: 13px !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.7 !important;
+  max-width: 760px !important;
+}
+
+html[data-hn-theme] .comment p {
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+  color: var(--text-secondary) !important;
+}
+
+html[data-hn-theme] .comment a,
+html[data-hn-theme] .comment a:link {
+  color: var(--comment-link) !important;
+  text-decoration: underline !important;
+  text-decoration-color: var(--comment-link-underline) !important;
+  text-underline-offset: 2px !important;
+}
+
+html[data-hn-theme] .comment a:visited { color: var(--text-tertiary) !important; }
+html[data-hn-theme] .comment a:hover { color: var(--comment-link-hover) !important; }
+
+html[data-hn-theme] .comment-tree .comment-tree {
+  border-left: 1px solid var(--border-subtle) !important;
+}
+
+html[data-hn-theme] img[src="s.gif"] { opacity: 0 !important; }
+
+html[data-hn-theme] .comtr { background: transparent !important; }
+html[data-hn-theme] .comtr:hover > td {
+  background: var(--bg-hover) !important;
+  border-radius: var(--radius) !important;
+}
+
+html[data-hn-theme] a[href*="reply"] {
+  color: var(--text-tertiary) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 2px 6px !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid transparent !important;
+  transition: all var(--transition) !important;
+}
+
+html[data-hn-theme] a[href*="reply"]:hover {
+  color: var(--text-secondary) !important;
+  border-color: var(--border-subtle) !important;
+  background: var(--bg-surface) !important;
+}
+
+html[data-hn-theme] .togg,
+html[data-hn-theme] a.togg {
+  color: var(--accent) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  font-family: var(--font-mono) !important;
+  opacity: 0.7 !important;
+}
+
+html[data-hn-theme] a.togg:hover { opacity: 1 !important; }
+
+/* ── Forms ───────────────────────────────────────────────── */
+html[data-hn-theme] input[type="text"],
+html[data-hn-theme] input[type="email"],
+html[data-hn-theme] input[type="password"],
+html[data-hn-theme] textarea {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 13px !important;
+  padding: 8px 10px !important;
+  outline: none !important;
+  transition: border-color var(--transition), box-shadow var(--transition) !important;
+  width: 100% !important;
+  max-width: 480px !important;
+}
+
+html[data-hn-theme] input[type="text"]:focus,
+html[data-hn-theme] input[type="email"]:focus,
+html[data-hn-theme] input[type="password"]:focus,
+html[data-hn-theme] textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-glow) !important;
+}
+
+html[data-hn-theme] input[type="submit"] {
+  background: var(--bg-surface-2) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 7px 16px !important;
+  cursor: pointer !important;
+  transition: all var(--transition) !important;
+}
+
+html[data-hn-theme] input[type="submit"]:hover {
+  background: var(--bg-surface-3) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
+/* ── Code ────────────────────────────────────────────────── */
+html[data-hn-theme] pre,
+html[data-hn-theme] code {
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius) !important;
+  color: var(--text-primary) !important;
+  line-height: 1.6 !important;
+}
+
+html[data-hn-theme] pre {
+  padding: 12px 14px !important;
+  overflow-x: auto !important;
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+}
+
+html[data-hn-theme] code { padding: 1px 5px !important; }
+
+/* ── Utility ─────────────────────────────────────────────── */
+html[data-hn-theme] span.dead,
+html[data-hn-theme] .dead .title a { color: var(--text-tertiary) !important; opacity: 0.5 !important; }
+
+html[data-hn-theme] span.flaglink,
+html[data-hn-theme] a[href*="flag"] {
+  color: var(--text-tertiary) !important;
+  opacity: 0.5 !important;
+  font-size: 10.5px !important;
+}
+
+html[data-hn-theme] span.flaglink:hover,
+html[data-hn-theme] a[href*="flag"]:hover { opacity: 1 !important; color: #f85149 !important; }
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+html[data-hn-theme] ::-webkit-scrollbar        { width: 8px !important; height: 8px !important; }
+html[data-hn-theme] ::-webkit-scrollbar-track  { background: var(--bg-base) !important; }
+html[data-hn-theme] ::-webkit-scrollbar-thumb  { background: var(--border) !important; border-radius: 4px !important; }
+html[data-hn-theme] ::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary) !important; }
+
+/* ── Global table reset (must be last, then nav re-applied) ── */
+html[data-hn-theme] table,
+html[data-hn-theme] tbody,
+html[data-hn-theme] tr,
+html[data-hn-theme] td {
+  background-color: transparent !important;
+}
+
+html[data-hn-theme] #hnmain > tbody > tr:first-child > td {
+  background: var(--nav-bg) !important;
+}
+
+html[data-hn-theme] tbody > tr.spacer { height: 2px !important; }
+html[data-hn-theme] .fatitem td.subtext { padding-top: 4px !important; }
+html[data-hn-theme] td.comment { color: var(--text-secondary) !important; }
+
+html[data-hn-theme] .admin td {
+  font-family: var(--font-sans) !important;
+  font-size: 12.5px !important;
+  color: var(--text-secondary) !important;
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media only screen and (max-width: 750px) {
+  html[data-hn-theme] #hnmain { min-width: 0 !important; width: 100% !important; }
+  html[data-hn-theme] #hnmain > tbody > tr:first-child > td { padding: 0 12px !important; }
+  html[data-hn-theme] .pagetop { font-size: 12px !important; gap: 0 !important; }
+  html[data-hn-theme] .pagetop a { padding: 3px 5px !important; font-size: 11.5px !important; }
+  html[data-hn-theme] .hnname { font-size: 13px !important; }
+  html[data-hn-theme] td.title { font-size: 14px !important; padding: 6px 4px 2px 4px !important; }
+  html[data-hn-theme] .title a,
+  html[data-hn-theme] .titleline > a:first-child { font-size: 14px !important; line-height: 1.5 !important; }
+  html[data-hn-theme] .subtext td { font-size: 12px !important; padding-left: 28px !important; }
+  html[data-hn-theme] .comment { font-size: 13.5px !important; max-width: 100% !important; }
+  html[data-hn-theme] .sitebit a,
+  html[data-hn-theme] .sitebit span,
+  html[data-hn-theme] span.sitestr { font-size: 10px !important; }
+}
+
+@media only screen and (max-width: 389px) {
+  html[data-hn-theme] .title a,
+  html[data-hn-theme] .titleline > a:first-child { font-size: 13.5px !important; }
+  html[data-hn-theme] .sitebit { display: none !important; }
+}
+
+/* Preserve original rank alignment */
+html[data-hn-theme] td.title span.rank {
+  color: var(--text-tertiary) !important;
+  font-size: 11.5px !important;
+  font-family: var(--font-mono) !important;
+  min-width: 28px !important;
+  text-align: right !important;
+  padding-right: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin-top: 15px !important;
+}
