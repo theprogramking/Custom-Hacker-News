@@ -1,0 +1,23 @@
+/* HN Modern — dark.css · Color variables only */
+html[data-hn-theme="dark"] {
+  --bg-base:        #0d1117;
+  --bg-surface:     #161b22;
+  --bg-surface-2:   #1c2128;
+  --bg-surface-3:   #21262d;
+  --bg-hover:       #1c2128;
+  --border:         #30363d;
+  --border-subtle:  #21262d;
+  --accent:         #f97316;
+  --accent-dim:     rgba(249,115,22,0.15);
+  --accent-glow:    rgba(249,115,22,0.08);
+  --text-primary:   #e6edf3;
+  --text-secondary: #8b949e;
+  --text-tertiary:  #6e7681;
+  --text-link:      #c9d1d9;
+  --text-visited:   #6e7681;
+  --score:          #3fb950;
+  --comment-link:             #58a6ff;
+  --comment-link-underline:   rgba(88,166,255,0.35);
+  --comment-link-hover:       #79c0ff;
+  --nav-bg:         rgba(13,17,23,0.92);
+}

@@ -1,0 +1,23 @@
+/* HN Modern — light.css · Color variables only */
+html[data-hn-theme="light"] {
+  --bg-base:        #ffffff;
+  --bg-surface:     #f6f8fa;
+  --bg-surface-2:   #eef2f6;
+  --bg-surface-3:   #e7ebf0;
+  --bg-hover:       #f3f4f6;
+  --border:         #d0d7de;
+  --border-subtle:  #e5e7eb;
+  --accent:         #f97316;
+  --accent-dim:     rgba(249,115,22,0.12);
+  --accent-glow:    rgba(249,115,22,0.08);
+  --text-primary:   #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary:  #6b7280;
+  --text-link:      #111827;
+  --text-visited:   #9ca3af;
+  --score:          #16a34a;
+  --comment-link:             #0969da;
+  --comment-link-underline:   rgba(9,105,218,0.3);
+  --comment-link-hover:       #0550ae;
+  --nav-bg:         rgba(255,255,255,0.92);
+}
