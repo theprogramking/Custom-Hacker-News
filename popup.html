@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HN Modern</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="popup">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <div class="logo-mark">Y</div>
+        <div class="logo-text">
+          <span class="logo-name">HN Modern</span>
+          <span class="logo-sub">Theme Selector</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Theme options -->
+    <div class="section-label">Appearance</div>
+    <div class="options" role="radiogroup" aria-label="Theme">
+
+      <button class="option" data-theme="default" role="radio" aria-checked="false">
+        <span class="option-preview preview-default">
+          <span class="preview-bar"></span>
+          <span class="preview-line"></span>
+          <span class="preview-line short"></span>
+        </span>
+        <span class="option-info">
+          <span class="option-name">Default</span>
+          <span class="option-desc">Original Hacker News</span>
+        </span>
+        <span class="option-check" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </button>
+
+      <button class="option" data-theme="dark" role="radio" aria-checked="false">
+        <span class="option-preview preview-dark">
+          <span class="preview-bar"></span>
+          <span class="preview-line"></span>
+          <span class="preview-line short"></span>
+        </span>
+        <span class="option-info">
+          <span class="option-name">Dark</span>
+          <span class="option-desc">GitHub Dark × Linear</span>
+        </span>
+        <span class="option-check" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </button>
+
+      <button class="option" data-theme="light" role="radio" aria-checked="false">
+        <span class="option-preview preview-light">
+          <span class="preview-bar"></span>
+          <span class="preview-line"></span>
+          <span class="preview-line short"></span>
+        </span>
+        <span class="option-info">
+          <span class="option-name">Light</span>
+          <span class="option-desc">Clean & minimal</span>
+        </span>
+        <span class="option-check" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </button>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      Changes apply instantly
+    </div>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
