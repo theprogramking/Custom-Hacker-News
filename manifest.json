@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "HN Modern",
+  "name": "Custom Hacker NEws",
   "version": "2.1.0",
-  "description": "A GitHub Dark × Linear redesign for Hacker News. Dark, light, or original.",
+  "description": "A lightweight Chrome extension that lets you fully customize the appearance of Hacker News with themes, styling controls, and layout tweaks for a cleaner, more personalized browsing experience.",
   "icons": {
     "16":  "icons/icon16.png",
     "48":  "icons/icon48.png",
