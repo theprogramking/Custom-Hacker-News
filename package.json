@@ -1,0 +1,64 @@
+{
+  "name": "custom-hacker-news",
+  "displayName": "Custom Hacker News",
+  "publisher": "theprogramking",
+  "version": "2.1.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "configuration": [
+      {
+        "title": "Appearance",
+        "properties": {
+          "hackerNews.showFooter": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show or hide the Hacker News footer link.",
+            "scope": "window"
+          },
+          "hackerNews.showArticleNumbers": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show or hide ranking numbers for Hacker News articles.",
+            "scope": "window"
+          },
+          "hackerNews.contentWidth": {
+            "type": "number",
+            "default": 900,
+            "minimum": 700,
+            "maximum": 1400,
+            "description": "Maximum width for the Hacker News article list.",
+            "scope": "window"
+          },
+          "hackerNews.fontFamily": {
+            "type": "string",
+            "default": "system",
+            "enum": [
+              "system",
+              "Inter",
+              "JetBrains Mono",
+              "Fira Code",
+              "Georgia",
+              "Times New Roman",
+              "Arial"
+            ],
+            "description": "Font family used in Hacker News content.",
+            "scope": "window"
+          },
+          "hackerNews.fontSize": {
+            "type": "number",
+            "default": 14,
+            "minimum": 10,
+            "maximum": 24,
+            "description": "Base font size for Hacker News article titles, metadata, comments links, and footer.",
+            "scope": "window"
+          }
+        }
+      }
+    ]
+  }
+}
