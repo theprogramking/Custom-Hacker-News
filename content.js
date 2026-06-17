@@ -18,6 +18,7 @@
     showFooter: true,
     showArticleNumbers: true,
     contentWidth: 900,
+    articleLineWidth: 700,
     fontFamily: 'system',
     fontSize: 14
   };
@@ -43,22 +44,21 @@
     return `:root {
   --content-width: ${Number(appearance.contentWidth) || DEFAULT_APPEARANCE.contentWidth}px;
   --font-size: ${Number(appearance.fontSize) || DEFAULT_APPEARANCE.fontSize}px;
+  --font-size-base: var(--font-size);
+  --font-size-title: calc(var(--font-size-base) + 2px);
+  --font-size-meta: calc(var(--font-size-base) - 2px);
+  --font-size-small: calc(var(--font-size-base) - 3px);
+  --article-line-width: ${Number(appearance.articleLineWidth) || DEFAULT_APPEARANCE.articleLineWidth}px;
   --font-sans: ${getFontStack(appearance.fontFamily)};
 }
 
-html[data-hn-show-rank="false"] td.title[align="right"],
-html[data-hn-show-rank="false"] td.title span.rank {
+html[data-hn-show-footer="false"] .yclinks {
   display: none !important;
 }
 
-html[data-hn-show-rank="false"] tr.athing > td.title[align="right"] {
-  width: 0 !important;
-  min-width: 0 !important;
-  padding: 0 !important;
-}
-
-html[data-hn-show-rank="false"] tr.athing > td:nth-child(3) {
-  padding-left: 0 !important;
+html[data-hn-show-rank="false"] td.title span.rank {
+  visibility: hidden !important;
+  color: transparent !important;
 }
 
 html #hnmain {
@@ -67,11 +67,16 @@ html #hnmain {
 
 html .title,
 html td.title {
-  font-size: var(--font-size) !important;
+  font-size: var(--font-size-base) !important;
 }
 
-html .titleline > a:first-child {
-  font-size: calc(var(--font-size) + 2px) !important;
+html .titleline > a:first-child,
+html .title a {
+  font-size: var(--font-size-title) !important;
+  max-width: var(--article-line-width) !important;
+  display: inline-block !important;
+  white-space: normal !important;
+  word-break: break-word !important;
 }
 
 html .subtext,
@@ -79,8 +84,23 @@ html .subtext td,
 html .subtext a,
 html .comment,
 html .comment a,
-html .morelink {
-  font-size: calc(var(--font-size) - 2px) !important;
+html .comhead,
+html .morelink,
+html .pagetop a,
+html .sitebit a,
+html .sitebit span,
+html span.sitestr {
+  font-size: var(--font-size-meta) !important;
+}
+
+html .comment {
+  font-size: var(--font-size-meta) !important;
+}
+
+html .yclinks,
+html .yclinks a,
+html .yclinks a:visited {
+  font-size: var(--font-size-meta) !important;
 }
 
 html a.morelink:hover {
@@ -129,16 +149,6 @@ html a.morelink:hover {
 
   function updateFooterVisibility(showFooter) {
     document.documentElement.setAttribute('data-hn-show-footer', String(showFooter));
-    const links = Array.from(document.querySelectorAll('a.morelink'));
-    links.forEach((link) => {
-      const row = link.closest('tr');
-      if (!row) return;
-      row.style.display = showFooter ? '' : 'none';
-      const sibling = row.nextElementSibling;
-      if (sibling && sibling.tagName === 'TR' && sibling.querySelector('td') && !sibling.textContent.trim()) {
-        sibling.style.display = showFooter ? '' : 'none';
-      }
-    });
   }
 
   function applyAppearance(appearance) {
@@ -146,6 +156,7 @@ html a.morelink:hover {
     root.style.setProperty('--font-sans', getFontStack(appearance.fontFamily));
     root.style.setProperty('--font-size', `${appearance.fontSize}px`);
     root.style.setProperty('--content-width', `${appearance.contentWidth}px`);
+    root.style.setProperty('--article-line-width', `${appearance.articleLineWidth}px`);
     root.setAttribute('data-hn-show-rank', String(appearance.showArticleNumbers));
     updateFooterVisibility(appearance.showFooter);
 

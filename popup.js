@@ -9,17 +9,30 @@
     showFooter: true,
     showArticleNumbers: true,
     contentWidth: 900,
+    articleLineWidth: 700,
     fontFamily: 'system',
     fontSize: 14
   };
+
+  const APPEARANCE_KEYS = [
+    'showFooter',
+    'showArticleNumbers',
+    'contentWidth',
+    'articleLineWidth',
+    'fontFamily',
+    'fontSize'
+  ];
 
   const themeOptions = document.querySelectorAll('.option');
   const showFooterInput = document.getElementById('showFooter');
   const showArticleNumbersInput = document.getElementById('showArticleNumbers');
   const contentWidthInput = document.getElementById('contentWidth');
+  const articleLineWidthInput = document.getElementById('articleLineWidth');
   const fontFamilyInput = document.getElementById('fontFamily');
   const fontSizeInput = document.getElementById('fontSize');
   const fontSizeValue = document.getElementById('fontSizeValue');
+  const articleLineWidthValue = document.getElementById('articleLineWidthValue');
+  const resetAppearanceButton = document.getElementById('resetAppearance');
 
   function setActive(theme) {
     themeOptions.forEach((btn) => {
@@ -52,6 +65,10 @@
     if (values.contentWidth !== undefined) {
       contentWidthInput.value = values.contentWidth;
     }
+    if (values.articleLineWidth !== undefined) {
+      articleLineWidthInput.value = values.articleLineWidth;
+      articleLineWidthValue.textContent = `${values.articleLineWidth}px`;
+    }
     if (values.fontFamily !== undefined) {
       fontFamilyInput.value = values.fontFamily;
     }
@@ -65,6 +82,15 @@
     chrome.storage.sync.set(updates, () => {
       if (chrome.runtime.lastError) return;
       broadcastMessage({ type: 'HN_UPDATE_APPEARANCE', appearance: updates });
+    });
+  }
+
+  function resetAppearance() {
+    const defaults = { ...DEFAULT_APPEARANCE };
+    chrome.storage.sync.set(defaults, () => {
+      if (chrome.runtime.lastError) return;
+      syncControlValues(defaults);
+      broadcastMessage({ type: 'HN_UPDATE_APPEARANCE', appearance: defaults });
     });
   }
 
@@ -92,6 +118,14 @@
     saveAppearance({ contentWidth: Number(contentWidthInput.value) });
   });
 
+  articleLineWidthInput.addEventListener('input', () => {
+    articleLineWidthValue.textContent = `${articleLineWidthInput.value}px`;
+  });
+
+  articleLineWidthInput.addEventListener('change', () => {
+    saveAppearance({ articleLineWidth: Number(articleLineWidthInput.value) });
+  });
+
   fontFamilyInput.addEventListener('change', () => {
     saveAppearance({ fontFamily: fontFamilyInput.value });
   });
@@ -103,6 +137,8 @@
   fontSizeInput.addEventListener('change', () => {
     saveAppearance({ fontSize: Number(fontSizeInput.value) });
   });
+
+  resetAppearanceButton.addEventListener('click', resetAppearance);
 
   chrome.storage.sync.get(
     {
