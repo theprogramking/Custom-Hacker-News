@@ -17,6 +17,7 @@
   const DEFAULT_APPEARANCE = {
     showFooter: true,
     showArticleNumbers: true,
+      showUpvotes: true,
     contentWidth: 900,
     articleLineWidth: 700,
     fontFamily: 'system',
@@ -54,6 +55,18 @@
 
 html[data-hn-show-footer="false"] .yclinks {
   display: none !important;
+
+html[data-hn-show-footer="false"] input[type="text"],
+html[data-hn-show-footer="false"] .pagetop {
+  display: none !important;
+}
+
+html[data-hn-show-upvotes="false"] .votearrow,
+html[data-hn-show-upvotes="false"] .score {
+  visibility: hidden !important;
+  width: 0 !important;
+  margin: 0 !important;
+}
 }
 
 html[data-hn-show-rank="false"] td.title span.rank {
@@ -77,6 +90,13 @@ html .title a {
   display: inline-block !important;
   white-space: normal !important;
   word-break: break-word !important;
+
+html[data-hn-theme] .title a,
+html[data-hn-theme] .titleline a,
+html[data-hn-theme] .title a:link,
+html[data-hn-theme] .titleline > a:first-child {
+  font-size: var(--font-size-title) !important;
+}
 }
 
 html .subtext,
@@ -159,6 +179,7 @@ html a.morelink:hover {
     root.style.setProperty('--article-line-width', `${appearance.articleLineWidth}px`);
     root.setAttribute('data-hn-show-rank', String(appearance.showArticleNumbers));
     updateFooterVisibility(appearance.showFooter);
+  root.setAttribute('data-hn-show-upvotes', String(appearance.showUpvotes));
 
     const appearanceStyle = ensureStyle(APPEARANCE_STYLE_ID);
     appearanceStyle.textContent = getAppearanceCSS(appearance);

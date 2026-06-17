@@ -8,6 +8,7 @@
   const DEFAULT_APPEARANCE = {
     showFooter: true,
     showArticleNumbers: true,
+      showUpvotes: true,
     contentWidth: 900,
     articleLineWidth: 700,
     fontFamily: 'system',
@@ -17,6 +18,7 @@
   const APPEARANCE_KEYS = [
     'showFooter',
     'showArticleNumbers',
+      'showUpvotes',
     'contentWidth',
     'articleLineWidth',
     'fontFamily',
@@ -26,6 +28,7 @@
   const themeOptions = document.querySelectorAll('.option');
   const showFooterInput = document.getElementById('showFooter');
   const showArticleNumbersInput = document.getElementById('showArticleNumbers');
+    const showUpvotesInput = document.getElementById('showUpvotes');
   const contentWidthInput = document.getElementById('contentWidth');
   const articleLineWidthInput = document.getElementById('articleLineWidth');
   const fontFamilyInput = document.getElementById('fontFamily');
@@ -61,6 +64,9 @@
     }
     if (values.showArticleNumbers !== undefined) {
       showArticleNumbersInput.checked = values.showArticleNumbers;
+        if (values.showUpvotes !== undefined) {
+          showUpvotesInput.checked = values.showUpvotes;
+        }
     }
     if (values.contentWidth !== undefined) {
       contentWidthInput.value = values.contentWidth;
@@ -112,6 +118,10 @@
 
   showArticleNumbersInput.addEventListener('change', () => {
     saveAppearance({ showArticleNumbers: showArticleNumbersInput.checked });
+
+    showUpvotesInput.addEventListener('change', () => {
+      saveAppearance({ showUpvotes: showUpvotesInput.checked });
+    });
   });
 
   contentWidthInput.addEventListener('change', () => {

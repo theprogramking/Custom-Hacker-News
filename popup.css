@@ -353,6 +353,22 @@ body {
   outline: none;
   border-color: var(--border-focus);
   box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.16);
+
+.control-select option {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  padding: 8px;
+}
+
+.control-select option:checked {
+  background: var(--accent);
+  color: #000;
+}
+
+.control-select:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+}
 }
 
 .range-row {
@@ -460,4 +476,15 @@ input[type='range']::-moz-range-thumb {
   border-top: 1px solid var(--border);
   padding-top: 10px;
   letter-spacing: 0.01em;
+
+.footer a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 120ms ease;
+}
+
+.footer a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
 }
