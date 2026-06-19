@@ -17,7 +17,7 @@
   const DEFAULT_APPEARANCE = {
     showFooter: true,
     showArticleNumbers: true,
-      showUpvotes: true,
+    showUpvotes: true,
     contentWidth: 900,
     articleLineWidth: 700,
     fontFamily: 'system',
@@ -35,13 +35,19 @@
   };
 
   const appearanceState = { ...DEFAULT_APPEARANCE };
-  let currentTheme = DEFAULT_THEME;
 
   function getFontStack(fontFamily) {
     return FONT_STACKS[fontFamily] || FONT_STACKS.system;
   }
 
+  function normalizeArticleRowSpacing(value) {
+    const numericValue = Number(value) || DEFAULT_APPEARANCE.articleLineWidth;
+    return Math.max(4, Math.min(24, Math.round(numericValue / 50)));
+  }
+
   function getAppearanceCSS(appearance) {
+    const rowSpacing = normalizeArticleRowSpacing(appearance.articleLineWidth);
+
     return `:root {
   --content-width: ${Number(appearance.contentWidth) || DEFAULT_APPEARANCE.contentWidth}px;
   --font-size: ${Number(appearance.fontSize) || DEFAULT_APPEARANCE.fontSize}px;
@@ -49,33 +55,33 @@
   --font-size-title: calc(var(--font-size-base) + 2px);
   --font-size-meta: calc(var(--font-size-base) - 2px);
   --font-size-small: calc(var(--font-size-base) - 3px);
-  --article-line-width: ${Number(appearance.articleLineWidth) || DEFAULT_APPEARANCE.articleLineWidth}px;
+  --article-row-spacing: ${rowSpacing}px;
   --font-sans: ${getFontStack(appearance.fontFamily)};
 }
 
 html[data-hn-show-footer="false"] .yclinks {
   display: none !important;
-
-html[data-hn-show-footer="false"] input[type="text"],
-html[data-hn-show-footer="false"] .pagetop {
-  display: none !important;
 }
 
 html[data-hn-show-upvotes="false"] .votearrow,
-html[data-hn-show-upvotes="false"] .score {
-  visibility: hidden !important;
-  width: 0 !important;
-  margin: 0 !important;
-}
+html[data-hn-show-upvotes="false"] .votelinks,
+html[data-hn-show-upvotes="false"] .score,
+html[data-hn-show-upvotes="false"] span.score {
+  display: none !important;
 }
 
 html[data-hn-show-rank="false"] td.title span.rank {
-  visibility: hidden !important;
-  color: transparent !important;
+  display: none !important;
 }
 
 html #hnmain {
   max-width: min(var(--content-width), 100%) !important;
+}
+
+html[data-hn-theme] tr.athing > td.title,
+html[data-hn-theme] tr.athing > td.subtext {
+  padding-top: calc(var(--article-row-spacing) * 0.6) !important;
+  padding-bottom: calc(var(--article-row-spacing) * 0.6) !important;
 }
 
 html .title,
@@ -86,17 +92,16 @@ html td.title {
 html .titleline > a:first-child,
 html .title a {
   font-size: var(--font-size-title) !important;
-  max-width: var(--article-line-width) !important;
   display: inline-block !important;
   white-space: normal !important;
   word-break: break-word !important;
+}
 
 html[data-hn-theme] .title a,
 html[data-hn-theme] .titleline a,
 html[data-hn-theme] .title a:link,
 html[data-hn-theme] .titleline > a:first-child {
   font-size: var(--font-size-title) !important;
-}
 }
 
 html .subtext,
@@ -155,14 +160,14 @@ html a.morelink:hover {
   }
 
   async function applyTheme(theme) {
-    currentTheme = theme || DEFAULT_THEME;
-    if (currentTheme === 'default') {
+    const nextTheme = theme || DEFAULT_THEME;
+    if (nextTheme === 'default') {
       document.documentElement.removeAttribute('data-hn-theme');
     } else {
-      document.documentElement.setAttribute('data-hn-theme', currentTheme);
+      document.documentElement.setAttribute('data-hn-theme', nextTheme);
     }
 
-    const css = await buildCSS(currentTheme);
+    const css = await buildCSS(nextTheme);
     const themeStyle = ensureStyle(THEME_STYLE_ID);
     themeStyle.textContent = css;
   }
@@ -176,10 +181,10 @@ html a.morelink:hover {
     root.style.setProperty('--font-sans', getFontStack(appearance.fontFamily));
     root.style.setProperty('--font-size', `${appearance.fontSize}px`);
     root.style.setProperty('--content-width', `${appearance.contentWidth}px`);
-    root.style.setProperty('--article-line-width', `${appearance.articleLineWidth}px`);
+    root.style.setProperty('--article-row-spacing', `${normalizeArticleRowSpacing(appearance.articleLineWidth)}px`);
     root.setAttribute('data-hn-show-rank', String(appearance.showArticleNumbers));
     updateFooterVisibility(appearance.showFooter);
-  root.setAttribute('data-hn-show-upvotes', String(appearance.showUpvotes));
+    root.setAttribute('data-hn-show-upvotes', String(appearance.showUpvotes));
 
     const appearanceStyle = ensureStyle(APPEARANCE_STYLE_ID);
     appearanceStyle.textContent = getAppearanceCSS(appearance);

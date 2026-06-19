@@ -388,6 +388,7 @@ body {
 
 input[type='range'] {
   -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   background: transparent;
   cursor: pointer;
@@ -445,8 +446,8 @@ input[type='range']::-moz-range-thumb {
 
 .reset-button {
   width: 100%;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
   color: var(--text-primary);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
@@ -454,17 +455,19 @@ input[type='range']::-moz-range-thumb {
   font-size: 11px;
   letter-spacing: 0.05em;
   cursor: pointer;
-  transition: background 120ms ease, border-color 120ms ease, color 120ms ease, transform 120ms ease;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
 }
 
 .reset-button:hover {
-  background: rgba(255,255,255,0.08);
+  background: var(--bg-hover);
+  border-color: var(--accent);
+  color: var(--text-primary);
 }
 
 .reset-button:focus-visible {
   outline: none;
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.18);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
 }
 
 /* ── Footer ──────────────────────────────────────────────── */
@@ -472,19 +475,19 @@ input[type='range']::-moz-range-thumb {
   font-size: 11px;
   color: var(--text-faint);
   text-align: center;
-  padding-top: 4px;
+  padding: 10px 0 0;
   border-top: 1px solid var(--border);
-  padding-top: 10px;
   letter-spacing: 0.01em;
+}
 
 .footer a {
   color: var(--accent);
   text-decoration: none;
-  transition: opacity 120ms ease;
+  transition: color 120ms ease, opacity 120ms ease, text-decoration-color 120ms ease;
 }
 
 .footer a:hover {
-  opacity: 0.8;
+  color: var(--accent);
+  opacity: 0.88;
   text-decoration: underline;
-}
 }
