@@ -18,7 +18,6 @@
     showFooter: true,
     showArticleNumbers: true,
     showUpvotes: true,
-    contentWidth: 900,
     articleLineWidth: 700,
     fontFamily: 'system',
     fontSize: 14
@@ -49,7 +48,6 @@
     const rowSpacing = normalizeArticleRowSpacing(appearance.articleLineWidth);
 
     return `:root {
-  --content-width: ${Number(appearance.contentWidth) || DEFAULT_APPEARANCE.contentWidth}px;
   --font-size: ${Number(appearance.fontSize) || DEFAULT_APPEARANCE.fontSize}px;
   --font-size-base: var(--font-size);
   --font-size-title: calc(var(--font-size-base) + 2px);
@@ -59,23 +57,23 @@
   --font-sans: ${getFontStack(appearance.fontFamily)};
 }
 
-html[data-hn-show-footer="false"] .yclinks {
+html[data-hn-show-footer="false"] .yclinks,
+html[data-hn-show-footer="false"] form[action="//hn.algolia.com/"],
+html[data-hn-show-footer="false"] center > br,
+html[data-hn-show-footer="false"] center:has(.yclinks),
+html[data-hn-show-footer="false"] center:has(form[action="//hn.algolia.com/"]) {
   display: none !important;
 }
 
 html[data-hn-show-upvotes="false"] .votearrow,
-html[data-hn-show-upvotes="false"] .votelinks,
 html[data-hn-show-upvotes="false"] .score,
 html[data-hn-show-upvotes="false"] span.score {
-  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 
 html[data-hn-show-rank="false"] td.title span.rank {
   display: none !important;
-}
-
-html #hnmain {
-  max-width: min(var(--content-width), 100%) !important;
 }
 
 html[data-hn-theme] tr.athing > td.title,
@@ -180,7 +178,6 @@ html a.morelink:hover {
     const root = document.documentElement;
     root.style.setProperty('--font-sans', getFontStack(appearance.fontFamily));
     root.style.setProperty('--font-size', `${appearance.fontSize}px`);
-    root.style.setProperty('--content-width', `${appearance.contentWidth}px`);
     root.style.setProperty('--article-row-spacing', `${normalizeArticleRowSpacing(appearance.articleLineWidth)}px`);
     root.setAttribute('data-hn-show-rank', String(appearance.showArticleNumbers));
     updateFooterVisibility(appearance.showFooter);
@@ -221,6 +218,20 @@ html a.morelink:hover {
 
     if (msg.type === 'HN_UPDATE_APPEARANCE') {
       syncAppearance(msg.appearance || {});
+    }
+
+    if (msg.type === 'HN_RESET') {
+      document.documentElement.removeAttribute('data-hn-theme');
+      document.documentElement.removeAttribute('data-hn-show-footer');
+      document.documentElement.removeAttribute('data-hn-show-rank');
+      document.documentElement.removeAttribute('data-hn-show-upvotes');
+      document.documentElement.style.removeProperty('--font-sans');
+      document.documentElement.style.removeProperty('--font-size');
+      document.documentElement.style.removeProperty('--article-row-spacing');
+      const themeStyle = document.getElementById(THEME_STYLE_ID);
+      const appearanceStyle = document.getElementById(APPEARANCE_STYLE_ID);
+      if (themeStyle) themeStyle.remove();
+      if (appearanceStyle) appearanceStyle.remove();
     }
   });
 

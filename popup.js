@@ -9,7 +9,6 @@
     showFooter: true,
     showArticleNumbers: true,
     showUpvotes: true,
-    contentWidth: 900,
     articleLineWidth: 700,
     fontFamily: 'system',
     fontSize: 14
@@ -19,7 +18,6 @@
   const showFooterInput = document.getElementById('showFooter');
   const showArticleNumbersInput = document.getElementById('showArticleNumbers');
   const showUpvotesInput = document.getElementById('showUpvotes');
-  const contentWidthInput = document.getElementById('contentWidth');
   const articleLineWidthInput = document.getElementById('articleLineWidth');
   const fontFamilyInput = document.getElementById('fontFamily');
   const fontSizeInput = document.getElementById('fontSize');
@@ -58,9 +56,6 @@
     if (values.showUpvotes !== undefined) {
       showUpvotesInput.checked = values.showUpvotes;
     }
-    if (values.contentWidth !== undefined) {
-      contentWidthInput.value = values.contentWidth;
-    }
     if (values.articleLineWidth !== undefined) {
       articleLineWidthInput.value = values.articleLineWidth;
       articleLineWidthValue.textContent = `${values.articleLineWidth}px`;
@@ -82,11 +77,11 @@
   }
 
   function resetAppearance() {
-    const defaults = { ...DEFAULT_APPEARANCE };
-    chrome.storage.sync.set(defaults, () => {
+    chrome.storage.sync.clear(() => {
       if (chrome.runtime.lastError) return;
-      syncControlValues(defaults);
-      broadcastMessage({ type: 'HN_UPDATE_APPEARANCE', appearance: defaults });
+      syncControlValues(DEFAULT_APPEARANCE);
+      setActive(DEFAULT_THEME);
+      broadcastMessage({ type: 'HN_RESET' });
     });
   }
 
@@ -112,10 +107,6 @@
 
   showUpvotesInput.addEventListener('change', () => {
     saveAppearance({ showUpvotes: showUpvotesInput.checked });
-  });
-
-  contentWidthInput.addEventListener('change', () => {
-    saveAppearance({ contentWidth: Number(contentWidthInput.value) });
   });
 
   articleLineWidthInput.addEventListener('input', () => {

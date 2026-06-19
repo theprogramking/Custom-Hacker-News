@@ -338,21 +338,23 @@ body {
 }
 
 .control-select {
-  width: 120px;
-  min-width: 120px;
-  padding: 8px 10px;
+  min-width: 140px;
+  padding: 10px 12px;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.07);
   color: var(--text-primary);
+  font-size: 13px;
   font-family: var(--font);
-  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+  line-height: 1.35;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease, box-shadow 120ms ease;
 }
 
 .control-select:focus {
   outline: none;
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.16);
+  box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.18);
+}
 
 .control-select option {
   background: var(--bg-surface);
@@ -366,9 +368,8 @@ body {
 }
 
 .control-select:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.10);
   border-color: rgba(255,255,255,0.18);
-}
 }
 
 .range-row {
